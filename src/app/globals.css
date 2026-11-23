@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+/* 디자인 토큰 — A안 '탁상달력 주홍' (라이트 단일 테마) */
+@theme {
+  --color-bg: #fbfaf8;
+  --color-card: #ffffff;
+  --color-ink: #1a1a1a;
+  --color-sub: #77736b;
+  --color-line: #e7e3dc;
+  --color-btn: #1a1a1a;
+
+  /* 달력: 공휴일=주홍 진하게 / 연차=주홍 연하게 / 주말=회색 */
+  --color-holiday: #c9411f;
+  --color-leave: #f6d3c8;
+  --color-leave-ink: #8a2412;
+  --color-weekend: #eeebe5;
+  --color-weekend-ink: #5e5a53;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard",
+    "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  font-family: var(--font-sans);
+}
+
+/* Tailwind v4는 버튼 기본 커서가 화살표 → 누를 수 있는 건 손가락 커서로 */
+@layer base {
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+  :disabled {
+    cursor: not-allowed;
+  }
+}
