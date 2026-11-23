@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import SiteAnalytics from "@/components/SiteAnalytics";
 import "./globals.css";
 
 const TITLE = "연차각 — 2027 연차 계산기 | 황금연휴 연차 붙여쓰기";
@@ -34,7 +35,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">): React.ReactNode {
   return (
     <html lang="ko" className="h-full antialiased">
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <SiteAnalytics />
+      </body>
     </html>
   );
 }
