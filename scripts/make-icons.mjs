@@ -1,4 +1,4 @@
-// 앱 아이콘(A안: 탁상달력 한 장 — 주홍 머리 띠 + "연") PNG·ICO 생성 스크립트
+// 앱 아이콘(A안: 탁상달력 한 장 — 주홍 머리 띠 + "쉬") PNG·ICO 생성 스크립트
 // 사용: node scripts/make-icons.mjs   (macOS · Google Chrome · Apple SD Gothic Neo 필요)
 // 크롬 헤드리스로 캔버스를 정확한 크기로 찍는다. 추가 패키지 없음. (오늘얼마 make-icons.mjs 방식)
 import { execFileSync } from "node:child_process";
@@ -9,7 +9,7 @@ import { deflateSync, inflateSync } from "node:zlib";
 
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const root = new URL("..", import.meta.url).pathname;
-const work = mkdtempSync(join(tmpdir(), "yeonchagak-icons-"));
+const work = mkdtempSync(join(tmpdir(), "myeochil-icons-"));
 
 /**
  * size: 출력 px
@@ -40,12 +40,12 @@ ctx.save(); card(); ctx.clip(); ctx.fillStyle = "#C9411F"; ctx.fillRect(x0, x0, 
 
 // "연": 글자 모양 경계 기준으로 띠 아래 칸 정중앙
 ctx.font = "800 " + (w * (small ? 0.6 : 0.5)) + "px " + FONT;
-const m = ctx.measureText("\\uC5F0");
+const m = ctx.measureText("\\uC26C");
 const cy = x0 + band + (w - band) / 2;
 const x = s / 2 + (m.actualBoundingBoxLeft - m.actualBoundingBoxRight) / 2;
 const y = cy + (m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2;
 ctx.fillStyle = "#1A1A1A";
-ctx.fillText("\\uC5F0", x, y);
+ctx.fillText("\\uC26C", x, y);
 </script></body></html>`;
 }
 

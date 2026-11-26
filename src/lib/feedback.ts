@@ -9,7 +9,7 @@ import type { FeedbackSource } from "./feedbackSource";
  * ⚠️ 이 앱의 유일한 서버 저장. 입력한 연차 개수·고른 달은 보내지 않고, 의견 칸에 직접 쓴 글·연락처만.
  */
 
-export const SITE_ID = "yeonchagak";
+export const SITE_ID = "myeochil";
 export const MAX_MESSAGE = 1000;
 export const MAX_CONTACT = 100;
 

@@ -12,7 +12,7 @@ import { join } from "node:path";
 
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const root = new URL("..", import.meta.url).pathname;
-const work = mkdtempSync(join(tmpdir(), "yeonchagak-og-"));
+const work = mkdtempSync(join(tmpdir(), "myeochil-og-"));
 const W = 1200;
 const H = 630;
 
@@ -52,7 +52,7 @@ h1 em{font-style:normal;color:#C9411F}
 .cal .w{background:#EEEBE5;color:#5E5A53}
 </style></head><body>
 <div class="left">
-  <div class="brand"><span class="name">연차각</span><span class="tag">· 2027 연차 계산기</span></div>
+  <div class="brand"><span class="name">며칠쉬지</span><span class="tag">· 2027 연차 계산기</span></div>
   <h1><span>2027년, 내 연차로</span><span><em>며칠</em> 쉴 수 있을까?</span></h1>
   <p class="sub">연차 개수만 넣으면<br>가장 길게 쉬는 날짜를 알려줘요</p>
 </div>
@@ -88,6 +88,6 @@ if (w !== W || h !== H) throw new Error(`og: ${w}x${h} (기대 ${W}x${H})`);
 writeFileSync(join(root, "src/app/opengraph-image.png"), png);
 writeFileSync(
   join(root, "src/app/opengraph-image.alt.txt"),
-  "연차각 — 2027년, 내 연차로 며칠 쉴 수 있을까? 연차 3일로 추석 9/10~9/19 10일 연속 쉬는 예시 달력",
+  "며칠쉬지 — 2027년, 내 연차로 며칠 쉴 수 있을까? 연차 3일로 추석 9/10~9/19 10일 연속 쉬는 예시 달력",
 );
 console.log("미리보기 이미지 생성 완료");
