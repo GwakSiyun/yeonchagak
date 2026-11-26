@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   keywords: ["연차 계산기", "2027 연휴", "2027 황금연휴", "연차 붙여쓰기", "연차 언제 쓰지", "2027 공휴일"],
   // 검색엔진에 대표 주소 알림 — ?from=instagram 같은 주소가 따로 수집되지 않게
   alternates: { canonical: "/" },
-  // TODO(출시 전): 네이버 서치어드바이저 소유 확인 값 — 등록 후 받은 값으로 채우기 (지금은 비워 둠)
-  // verification: { other: { "naver-site-verification": "<서치어드바이저에서 받은 값>" } },
+  // 네이버 서치어드바이저 소유 확인 (HTML 태그 방식)
+  verification: { other: { "naver-site-verification": "08a095c5a365e326fbd64989883fe3a40d3c47c9" } },
   openGraph: {
     type: "website",
     url: "/",
