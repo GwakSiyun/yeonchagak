@@ -15,7 +15,7 @@ export default function Home(): React.ReactNode {
         intro={
           <header className="relative">
             <h1 className="pr-24 text-[22px] font-bold lg:pr-0">
-              연차각 <span className="ml-1 text-[14px] font-normal text-sub">2027 연차 계산기</span>
+              며칠쉬지 <span className="ml-1 text-[14px] font-normal text-sub">2027 연차 계산기</span>
             </h1>
             <p className="mt-1 text-[14px] text-sub">내 연차로 2027년에 가장 길게 쉬는 날짜를 찾아 줘요.</p>
             {/* 모바일만: 오른쪽 위 의견 보내기 (PC는 결과 맨 아래) */}

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { detectFeedbackSource, toFeedbackSource } from "./feedbackSource";
 
-const base = "https://yeonchagak.vercel.app/";
+const base = "https://myeochil.vercel.app/";
 
 function detect(url: string, referrer = "", standalone = false): string {
   return detectFeedbackSource({ url, referrer, standalone });

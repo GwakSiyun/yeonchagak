@@ -4,8 +4,8 @@ import type { MetadataRoute } from "next";
 // 서비스 워커(오프라인)는 이번 범위 아님. 아이폰은 app/apple-icon.png 를 쓴다.
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "연차각 — 2027 연차 계산기",
-    short_name: "연차각",
+    name: "며칠쉬지 — 2027 연차 계산기",
+    short_name: "며칠쉬지",
     description: "연차 개수만 넣으면 2027년에 가장 길게 쉬는 날짜를 알려줘요.",
     lang: "ko",
     start_url: "/",
