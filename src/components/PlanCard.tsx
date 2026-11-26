@@ -1,7 +1,7 @@
 import { TARGET_YEAR } from "@/lib/calendar2027";
 import { formatMonthDay, formatRange, formatShort } from "@/lib/date";
 import type { RecommendedPlan } from "@/lib/leave";
-import { formatEfficiency, planTitle } from "@/lib/plan";
+import { bridgeIndex, formatEfficiency, planTitle } from "@/lib/plan";
 import MiniCalendar from "./MiniCalendar";
 
 interface PlanCardProps {
@@ -11,6 +11,7 @@ interface PlanCardProps {
 
 export default function PlanCard({ plan, rank }: PlanCardProps): React.ReactNode {
   const otherSteps = plan.steps.length > 1;
+  const bridge = bridgeIndex(plan.steps);
   return (
     <article className="rounded-[10px] border border-line bg-card px-4 pt-3.5 pb-4">
       <p className="text-[13px] text-sub">
@@ -31,9 +32,9 @@ export default function PlanCard({ plan, rank }: PlanCardProps): React.ReactNode
 
       {otherSteps && (
         <div className="mt-3 border-t border-line pt-2.5">
-          <p className="text-[12px] text-sub">이 연휴, 연차 개수별로</p>
+          <p className="text-[12px] text-sub">연차를 덜 쓰면?</p>
           <ul className="mt-1 space-y-0.5 text-[13px] tabular-nums">
-            {plan.steps.map((s) => {
+            {plan.steps.map((s, i) => {
               const isThis = s.start === plan.start && s.end === plan.end;
               return (
                 <li key={`${s.start}-${s.end}`} className={isThis ? "font-bold" : "text-sub"}>
@@ -41,10 +42,18 @@ export default function PlanCard({ plan, rank }: PlanCardProps): React.ReactNode
                   <span className="ml-1.5 font-normal text-sub">
                     ({formatShort(s.start)}~{formatShort(s.end)})
                   </span>
+                  {i === bridge && (
+                    <span className="ml-1.5 rounded-[4px] bg-pick px-1.5 py-px text-[11px] font-bold text-pick-ink">
+                      ★ 추천
+                    </span>
+                  )}
                 </li>
               );
             })}
           </ul>
+          {bridge !== null && (
+            <p className="mt-1.5 text-[11px] text-sub">★ 추천: 연휴 사이 빈 평일만 연차로 메워서 효율이 좋은 조합이에요.</p>
+          )}
         </div>
       )}
     </article>

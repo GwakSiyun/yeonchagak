@@ -16,6 +16,10 @@
   --color-weekend: #eeebe5;
   --color-weekend-ink: #5e5a53;
 
+  /* '★ 추천' 표시 — 노랑 */
+  --color-pick: #ffe7a3;
+  --color-pick-ink: #6e4a00;
+
   --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard",
     "Noto Sans KR", "Malgun Gothic", sans-serif;
 }
