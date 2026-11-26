@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   keywords: ["2027 빨간날", "2027 공휴일", "2027 연휴", "2027 황금연휴", "2027 추석 연휴", "연차 붙여쓰기", "연차 계산기"],
   // 검색엔진에 대표 주소 알림 — ?from=instagram 같은 주소가 따로 수집되지 않게
   alternates: { canonical: "/" },
-  // 네이버 서치어드바이저 소유 확인 (HTML 태그 방식)
-  verification: { other: { "naver-site-verification": "08a095c5a365e326fbd64989883fe3a40d3c47c9" } },
+  // 네이버 서치어드바이저 소유 확인 (HTML 태그 방식, myeochil.vercel.app 기준)
+  verification: { other: { "naver-site-verification": "93930f50409b301f348e0f7edcd795b6e69f60a4" } },
   openGraph: {
     type: "website",
     url: "/",
