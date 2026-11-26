@@ -14,13 +14,13 @@ import PlanCard from "./PlanCard";
 interface CalculatorProps {
   /** 제목·소개 (서버에서 그림) */
   intro: React.ReactNode;
-  /** 계산 기준·출처 안내 */
-  notice: React.ReactNode;
+  /** 결과 맨 아래 (계산 기준·출처 안내, 의견 보내기) */
+  footer: React.ReactNode;
   /** 연차 없이 쉬는 연휴 (서버 계산) */
   freeBreaks: readonly RestPlan[];
 }
 
-export default function Calculator({ intro, notice, freeBreaks }: CalculatorProps): React.ReactNode {
+export default function Calculator({ intro, footer, freeBreaks }: CalculatorProps): React.ReactNode {
   const [leave, setLeave] = useState<number>(DEFAULT_LEAVE);
   const [month, setMonth] = useState<number | null>(null);
   const plans = useMemo<RecommendedPlan[]>(
@@ -67,7 +67,7 @@ export default function Calculator({ intro, notice, freeBreaks }: CalculatorProp
         <div className="mt-8 lg:hidden">
           <FreeBreaks breaks={freeBreaks} month={month} headingId="free-title" />
         </div>
-        <div className="mt-8">{notice}</div>
+        <div className="mt-8">{footer}</div>
       </div>
     </div>
   );

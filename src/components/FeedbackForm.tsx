@@ -1,0 +1,108 @@
+"use client";
+
+// 의견 보내기 — 펼쳐 쓰는 칸 (하단 고정 버튼·팝업 없이)
+// 공용 의견 테이블에 저장(서버 액션). 입력한 연차 개수·고른 달은 보내지 않는다. 이 칸에 직접 쓴 글·연락처만.
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
+import { sendFeedbackAction, type FeedbackState } from "@/app/feedbackAction";
+import { detectFeedbackSource } from "@/lib/feedbackSource";
+
+const MAX_MESSAGE = 1000;
+const MAX_CONTACT = 100;
+// 16px 미만이면 아이폰이 화면을 확대함
+const fieldClass =
+  "mt-1.5 w-full rounded-[8px] border border-line bg-card px-3 text-base text-ink outline-none focus:border-ink";
+
+function isStandalone(): boolean {
+  const nav = window.navigator as Navigator & { standalone?: boolean };
+  try {
+    return nav.standalone === true || window.matchMedia("(display-mode: standalone)").matches;
+  } catch {
+    return nav.standalone === true;
+  }
+}
+
+function SubmitButton(): React.ReactNode {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="mt-3 h-11 w-full rounded-[8px] bg-btn text-[15px] font-bold text-white disabled:opacity-60"
+    >
+      {pending ? "보내는 중…" : "보내기"}
+    </button>
+  );
+}
+
+export default function FeedbackForm(): React.ReactNode {
+  const [state, formAction] = useActionState<FeedbackState, FormData>(sendFeedbackAction, { status: "idle" });
+
+  // 들어온 경로는 보낼 때 브라우저에서 계산해 끼워 넣는다
+  function submit(formData: FormData): void {
+    formData.set(
+      "source",
+      detectFeedbackSource({ url: window.location.href, referrer: document.referrer, standalone: isStandalone() }),
+    );
+    formAction(formData);
+  }
+
+  return (
+    <details className="group rounded-[10px] border border-line bg-card">
+      <summary className="flex cursor-pointer list-none items-center justify-between rounded-[10px] px-4 py-3 text-[14px] outline-none focus-visible:outline-2 focus-visible:outline-ink [&::-webkit-details-marker]:hidden">
+        <span>
+          <span className="font-medium text-sub">의견 보내기</span>
+          <span className="ml-2 text-[13px] text-sub/70">불편한 점·바라는 기능</span>
+        </span>
+        <span aria-hidden="true" className="text-sub transition-transform group-open:rotate-90">
+          ›
+        </span>
+      </summary>
+
+      <div className="border-t border-line px-4 pt-3 pb-4">
+        {state.status === "sent" ? (
+          <p className="text-[14px] leading-6">
+            고마워요! 보내 주신 의견은 꼼꼼히 읽고
+            <br />
+            다음 업데이트에 반영할게요.
+          </p>
+        ) : (
+          <form action={submit}>
+            <label className="block text-[13px] text-sub">
+              불편했던 점 · 바라는 기능
+              <textarea
+                name="message"
+                required
+                maxLength={MAX_MESSAGE}
+                rows={4}
+                placeholder="예) 반차도 계산해 주면 좋겠어요"
+                className={`${fieldClass} resize-none py-2.5 leading-6`}
+              />
+            </label>
+            <label className="mt-3 block text-[13px] text-sub">
+              연락처 <span className="text-sub/70">(선택 · 답장이 필요하면)</span>
+              <input
+                name="contact"
+                maxLength={MAX_CONTACT}
+                placeholder="이메일 또는 인스타 아이디"
+                className={`${fieldClass} h-11`}
+              />
+            </label>
+            {/* 봇 걸러내기용 — 사람에겐 안 보이는 칸 */}
+            <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+
+            {state.status === "error" && (
+              <p role="alert" className="mt-2 text-[13px] text-holiday">
+                {state.message}
+              </p>
+            )}
+            <SubmitButton />
+            <p className="mt-2 text-[11px] leading-5 text-sub">
+              이 칸에 적은 글과 연락처만 보내져요. 입력한 연차 개수는 보내지 않아요.
+            </p>
+          </form>
+        )}
+      </div>
+    </details>
+  );
+}
