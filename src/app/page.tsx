@@ -1,5 +1,5 @@
 import Calculator from "@/components/Calculator";
-import FeedbackForm from "@/components/FeedbackForm";
+import FeedbackForm, { FeedbackHeaderButton } from "@/components/FeedbackForm";
 import { CALENDAR, TARGET_YEAR } from "@/lib/calendar2027";
 import { HOLIDAY_SOURCE } from "@/lib/holidays";
 import { findFreeBreaks } from "@/lib/leave";
@@ -13,11 +13,15 @@ export default function Home(): React.ReactNode {
       <Calculator
         freeBreaks={freeBreaks}
         intro={
-          <header>
-            <h1 className="text-[22px] font-bold">
+          <header className="relative">
+            <h1 className="pr-24 text-[22px] font-bold lg:pr-0">
               연차각 <span className="ml-1 text-[14px] font-normal text-sub">2027 연차 계산기</span>
             </h1>
             <p className="mt-1 text-[14px] text-sub">내 연차로 2027년에 가장 길게 쉬는 날짜를 찾아 줘요.</p>
+            {/* 모바일만: 오른쪽 위 의견 보내기 (PC는 결과 맨 아래) */}
+            <div className="lg:hidden">
+              <FeedbackHeaderButton />
+            </div>
           </header>
         }
         footer={
@@ -30,7 +34,7 @@ export default function Home(): React.ReactNode {
                 반영할게요.
               </p>
             </div>
-            <div className="mt-5">
+            <div className="mt-5 hidden lg:block">
               <FeedbackForm />
             </div>
           </footer>
